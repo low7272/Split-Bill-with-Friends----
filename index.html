@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一起分帳｜朋友聚餐與出遊</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <span class="eyebrow">SPLIT WITH FRIENDS</span>
+      <h1>開心相聚，輕鬆分帳。</h1>
+      <p>記下每筆花費，剩下的交給我們。聚餐、出遊都適用。</p>
+      <div class="totals"><div><span>本次總支出</span><strong id="total">NT$0</strong></div><div><span>一起參與</span><strong id="member-count">0 人</strong></div></div>
+    </header>
+    <p id="notice" class="notice" role="status" aria-live="polite"></p>
+    <div class="layout">
+      <div>
+        <section class="card" aria-labelledby="members-title">
+          <h2 id="members-title"><span class="step">01</span> 這次有誰？</h2>
+          <form id="member-form">
+            <label for="member-name">成員姓名</label>
+            <div class="inline"><input id="member-name" placeholder="例如：Peggy" maxlength="30" required autocomplete="off"><button type="submit">新增成員</button></div>
+          </form>
+          <ul id="members" class="members"></ul>
+          <p class="hint">已有支出紀錄的成員，需先刪除相關支出才能移除。</p>
+        </section>
+        <section class="card" aria-labelledby="expense-title">
+          <h2 id="expense-title"><span class="step">02</span> 記一筆支出</h2>
+          <form id="expense-form">
+            <label for="expense-name">花了什麼？</label>
+            <input id="expense-name" placeholder="例如：晚餐、停車費、門票" maxlength="80" required>
+            <div class="fields"><div><label for="amount">金額（NT$）</label><input id="amount" type="number" inputmode="decimal" min="0.01" max="999999999" step="0.01" placeholder="0" required></div><div><label for="payer">誰先付款？</label><select id="payer" required></select></div></div>
+            <fieldset><legend>哪些人一起分攤？</legend><div class="selection"><button id="select-all" class="text-button" type="button">全選</button><button id="select-none" class="text-button" type="button">清除選擇</button></div><div id="participants" class="participants"></div></fieldset>
+            <p class="hint">平均分攤至小數點後 2 位；除不盡的零頭依上方成員順序，每人分配 NT$0.01，直到分完。</p>
+            <button id="add-expense" class="wide" type="submit">＋ 新增支出</button>
+          </form>
+        </section>
+      </div>
+      <div>
+        <section class="card" aria-labelledby="settlement-title"><div class="section-heading"><h2 id="settlement-title"><span class="step">03</span> 怎麼結清？</h2><span class="badge">自動計算</span></div><p class="hint">將應收與應付直接配對，優先結清大額，盡量減少轉帳次數。</p><div id="settlements"></div></section>
+        <section class="card" aria-labelledby="balances-title"><h2 id="balances-title">每個人的收支</h2><div id="balances"></div></section>
+      </div>
+    </div>
+    <section class="card" aria-labelledby="history-title"><div class="section-heading"><h2 id="history-title">支出明細</h2><span id="expense-count" class="badge">0 筆</span></div><div id="expenses"></div></section>
+    <footer>資料僅儲存在這個瀏覽器，不會上傳。清除瀏覽器資料會移除紀錄。<br>修改支出時，請先刪除該筆，再重新新增。</footer>
+  </main>
+</body>
+</html>
